@@ -1,0 +1,11 @@
+/* Inet Streamer Mode: dölj kunduppgifter i kassan */
+#cellPhone,
+#organizationNo,
+#streetAddress,
+#zipCode,
+#postalCity,
+.ism-hidden {
+  filter: blur(8px) !important;
+  user-select: none !important;
+  pointer-events: none !important;
+}
