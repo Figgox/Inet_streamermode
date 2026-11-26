@@ -9,3 +9,13 @@ Döljer: e-post, mobilnummer, personnummer, adress, postnummer, postort, leveran
 **Chrome:** `chrome://extensions` → slå på *Developer mode* → *Load unpacked* → välj mappen.
 
 **Firefox:** `about:debugging#/runtime/this-firefox` → *Load Temporary Add-on* → välj `manifest.json`.
+
+## Skärmbilder
+
+**Kassan** (leveransuppgifter, mobilnummer, personnummer, adress och "Levereras till" är suddade):
+
+![Kassan](screenshots/kassa.png)
+
+**Kunduppgifter**:
+
+![Kunduppgifter](screenshots/kunduppgifter.webp)
