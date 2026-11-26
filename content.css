@@ -1,19 +1,20 @@
-/* Inet Streamer Mode: dölj kunduppgifter i kassan */
-#email,
-#cellPhone,
-#organizationNo,
-#streetAddress,
-#zipCode,
-#postalCity,
-#orgNo,
-#emailConfirm,
-input[autocomplete~="street-address"],
-input[autocomplete~="postal-code"],
-input[autocomplete~="address-level2"],
-input[autocomplete~="tel"],
-input[autocomplete="socialsecuritynumber"],
-.ism-city,
-.ism-hidden {
+/* Inet Streamer Mode: dölj kunduppgifter i kassan.
+   Av/på styrs via klassen "ism-off" på <html> (sätts av content.js). */
+html:not(.ism-off) #email,
+html:not(.ism-off) #cellPhone,
+html:not(.ism-off) #organizationNo,
+html:not(.ism-off) #streetAddress,
+html:not(.ism-off) #zipCode,
+html:not(.ism-off) #postalCity,
+html:not(.ism-off) #orgNo,
+html:not(.ism-off) #emailConfirm,
+html:not(.ism-off) input[autocomplete~="street-address"],
+html:not(.ism-off) input[autocomplete~="postal-code"],
+html:not(.ism-off) input[autocomplete~="address-level2"],
+html:not(.ism-off) input[autocomplete~="tel"],
+html:not(.ism-off) input[autocomplete="socialsecuritynumber"],
+html:not(.ism-off) .ism-city,
+html:not(.ism-off) .ism-hidden {
   filter: blur(8px) !important;
   user-select: none !important;
   pointer-events: none !important;

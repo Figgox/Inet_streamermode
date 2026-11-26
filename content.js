@@ -11,7 +11,27 @@
 
   const EMAIL = /[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g;
   const STYLE =
-    ".ism-hidden{filter:blur(8px)!important;user-select:none!important;pointer-events:none!important}";
+    "html:not(.ism-off) .ism-hidden{filter:blur(8px)!important;user-select:none!important;pointer-events:none!important}";
+
+  // På som standard (suddat tills inställningen lästs, så inget läcker).
+  let enabled = true;
+  function applyState(doc) {
+    doc.documentElement.classList.toggle("ism-off", !enabled);
+  }
+  try {
+    chrome.storage.local.get({ enabled: true }, (r) => {
+      enabled = r.enabled !== false;
+      applyState(document);
+    });
+    chrome.storage.onChanged.addListener((c, area) => {
+      if (area !== "local" || !c.enabled) return;
+      enabled = c.enabled.newValue !== false;
+      applyState(document);
+      scanFrames();
+    });
+  } catch (e) {
+    /* storage ej tillgängligt: förbli påslaget */
+  }
 
   function hide(el) {
     el.classList.add("ism-hidden");
@@ -60,6 +80,7 @@
       try {
         const d = f.contentDocument;
         if (!d || !d.body) return;
+        applyState(d);
         if (!d.getElementById("ism-style")) {
           const st = d.createElement("style");
           st.id = "ism-style";
