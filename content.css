@@ -5,6 +5,14 @@
 #streetAddress,
 #zipCode,
 #postalCity,
+#orgNo,
+#emailConfirm,
+input[autocomplete~="street-address"],
+input[autocomplete~="postal-code"],
+input[autocomplete~="address-level2"],
+input[autocomplete~="tel"],
+input[autocomplete="socialsecuritynumber"],
+.ism-city,
 .ism-hidden {
   filter: blur(8px) !important;
   user-select: none !important;

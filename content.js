@@ -79,6 +79,13 @@
   }
 
   function scan() {
+    // Postort (skrivskyddat fält utan id) ligger bredvid postnumret.
+    document
+      .querySelectorAll('input[autocomplete~="postal-code"], #zipCode')
+      .forEach((z) => {
+        const row = z.closest(".row");
+        if (row) row.querySelectorAll("input[readonly]").forEach(hide);
+      });
     if (document.body) hideEmails(document.body);
     scanFrames();
     document.querySelectorAll("h4, h3, h2").forEach((h) => {
