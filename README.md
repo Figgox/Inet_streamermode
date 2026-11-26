@@ -2,7 +2,7 @@
 
 Webbläsartillägg (Firefox + Chrome, Manifest V3) som döljer kunduppgifter i kassan på inet.se när du streamar eller delar skärm.
 
-Döljer: mobilnummer, personnummer, adress, postnummer, postort samt leveransadressen under "Levereras till".
+Döljer: e-post, mobilnummer, personnummer, adress, postnummer, postort, leveransadressen och valt ombud under "Levereras till" (även hos Postnord, DHL, Budbee m.fl.) samt Swish-numret.
 
 ## Installera
 
