@@ -1,4 +1,4 @@
-// Döljer textblock (t.ex. "Levereras till"-adressen) som inte har stabila id:n.
+// Döljer textblock (t.ex. "Levereras till"-adressen, som ligger i en <strong>, inte <p>) som inte har stabila id:n.
 (function () {
   const HEADINGS = /^(levereras till|leveransadress|faktureringsadress)$/i;
 
@@ -7,7 +7,7 @@
       if (!HEADINGS.test(h.textContent.trim())) return;
       const box = h.nextElementSibling;
       if (!box) return;
-      box.querySelectorAll("p").forEach((p) => p.classList.add("ism-hidden"));
+      box.classList.add("ism-hidden");
     });
   }
 
