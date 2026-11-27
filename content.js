@@ -11,21 +11,26 @@
 
   const EMAIL = /[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g;
   const STYLE =
-    "html:not(.ism-off) .ism-hidden{filter:blur(8px)!important;user-select:none!important;pointer-events:none!important}";
+    "html:not(.ism-off) .ism-hidden{filter:blur(8px)!important;user-select:none!important;pointer-events:none!important}" +
+    "html.ism-opsec:not(.ism-off) .ism-hidden{filter:brightness(0)!important;background:#000!important;border-radius:2px!important}";
 
   // På som standard (suddat tills inställningen lästs, så inget läcker).
   let enabled = true;
+  let opsec = false; // svarta block i stället för blur
   function applyState(doc) {
     doc.documentElement.classList.toggle("ism-off", !enabled);
+    doc.documentElement.classList.toggle("ism-opsec", opsec);
   }
   try {
-    chrome.storage.local.get({ enabled: true }, (r) => {
+    chrome.storage.local.get({ enabled: true, opsec: false }, (r) => {
       enabled = r.enabled !== false;
+      opsec = r.opsec === true;
       applyState(document);
     });
     chrome.storage.onChanged.addListener((c, area) => {
-      if (area !== "local" || !c.enabled) return;
-      enabled = c.enabled.newValue !== false;
+      if (area !== "local" || (!c.enabled && !c.opsec)) return;
+      if (c.enabled) enabled = c.enabled.newValue !== false;
+      if (c.opsec) opsec = c.opsec.newValue === true;
       applyState(document);
       scanFrames();
     });

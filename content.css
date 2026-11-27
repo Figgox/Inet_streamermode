@@ -1,5 +1,6 @@
 /* Inet Streamer Mode: dölj kunduppgifter i kassan.
-   Av/på styrs via klassen "ism-off" på <html> (sätts av content.js). */
+   Av/på styrs via klassen "ism-off" på <html> (sätts av content.js).
+   Opsec mode (klassen "ism-opsec") ersätter suddningen med svarta block. */
 html:not(.ism-off) #email,
 html:not(.ism-off) #cellPhone,
 html:not(.ism-off) #organizationNo,
@@ -18,4 +19,26 @@ html:not(.ism-off) .ism-hidden {
   filter: blur(8px) !important;
   user-select: none !important;
   pointer-events: none !important;
+}
+
+/* Opsec: helsvart block i stället för blur. brightness(0) gör varje pixel
+   (text, bakgrund, bilder) svart, så inget går att återskapa ur bilden. */
+html.ism-opsec:not(.ism-off) #email,
+html.ism-opsec:not(.ism-off) #cellPhone,
+html.ism-opsec:not(.ism-off) #organizationNo,
+html.ism-opsec:not(.ism-off) #streetAddress,
+html.ism-opsec:not(.ism-off) #zipCode,
+html.ism-opsec:not(.ism-off) #postalCity,
+html.ism-opsec:not(.ism-off) #orgNo,
+html.ism-opsec:not(.ism-off) #emailConfirm,
+html.ism-opsec:not(.ism-off) input[autocomplete~="street-address"],
+html.ism-opsec:not(.ism-off) input[autocomplete~="postal-code"],
+html.ism-opsec:not(.ism-off) input[autocomplete~="address-level2"],
+html.ism-opsec:not(.ism-off) input[autocomplete~="tel"],
+html.ism-opsec:not(.ism-off) input[autocomplete="socialsecuritynumber"],
+html.ism-opsec:not(.ism-off) .ism-city,
+html.ism-opsec:not(.ism-off) .ism-hidden {
+  filter: brightness(0) !important;
+  background: #000 !important;
+  border-radius: 2px !important;
 }
